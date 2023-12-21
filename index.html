@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <script src="https://kit.fontawesome.com/870995ee8f.js" crossorigin="anonymous"></script>
+  <link rel="icon" type="image/png"  href="./media-img/contact_back.jpeg">
+  <title>First Time Guest</title>
+</head>
+<body>
+
+  <!-- **************CONTACT SECTION**************** -->
+  <div class="container">
+  
+    <div class="wrapper animated bounceInLeft">
+
+
+      <div class="contact">
+        <div class="head">
+          <img src="./media-img/logo.png" alt="logo">
+          <h3>Word Sacntuary Lagos</h3>
+        </div>
+        
+
+        <fieldset>
+          <legend> Fill the form </legend>
+
+          <form action="" name="contact-us">
+                
+            <div class="form-group">
+              <label for="name">Full Name:</label>
+              <input type="text" name="name" id="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number:</label>
+              <input type="tel" name="phone" id="phone" required>
+            </div>
+
+            <div class="form-group full">
+              <label for="email">Email:</label>
+              <input type="email" name="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="date">Birthday:</label>
+              <input type="date" name="birthday-date" id="date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="profession">Profession:</label>
+              <input type="name" name="profession" id="profession" required>
+            </div>
+
+            <div class="form-group">
+              <label for="lifeclass">Life Class Teacher:</label>
+              <input type="text" name="lifeclass-teacher" id="lifeclass" required>
+            </div>
+
+            <div class="form-group">
+              <label for="hod_name">HOD in Charge:</label>
+              <input type="text" name="hod_name" id="hod_name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="social-media">Social Media:</label>
+              <input type="text" name="social-media" id="social-media" required>
+            </div>
+
+            <div class="form-group">
+              <label for="status">Status:</label>
+              <select name="Join or Not" id="status">
+                <option value="JOINED">JOINED</option>
+                <option value="DID NOT JOIN">DID NOT JOIN</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="department">Department:</label>
+              <select name="department" id="department">
+                <option value="WORD SANCTUARY CHOIR">WORD SANCTUARY CHOIR</option>
+                <option value="WORD SANCTUARY DRAMATIST">WORD SANCTUARY DRAMATIST</option>
+                <option value="LOVE & CARE">LOVE AND CARE</option>
+                <option value="POWER & SOUND">POWER AND SOUND</option>
+                <option value="MEDIA">MEDIA</option>
+                <option value="USHERING">USHERING</option>
+                <option value="DECORATION">DECORATION</option>
+              </select>
+            </div>
+    
+            <div class="form-group full">
+              <label for="message">Address:</label>
+              <textarea name="address" id="message" cols="30" rows="5" required></textarea>
+            </div>
+
+            <div class="form-group full">
+              <label for="comment">Comment:</label>
+              <textarea name="comment" id="comment" cols="30" rows="5" required></textarea>
+            </div>
+
+            <!-- <div class="form-group full">
+              <input type="submit" value="Submit" class="btn">
+            </div> -->
+            
+            <div class="form-group full">
+              <button type="submit" class="btn-submit">Submit</button>
+            </div>
+
+          </form>
+        </fieldset>
+        
+      </div>
+    </div>
+  </div>
+
+  <footer>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/wordsanctuarypage/"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com/word_sanctuary"><i class="fa-brands fa-twitter-square"></i></a>
+            <a href="https://www.instagram.com/wordsanctuaryglobal/"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@WordSanctuaryTV"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+
+      <div class="sign">
+        Word Sanctuary Lagos &copy; Copyright 2023.
+      </div>
+  </footer>
+
+  <script>
+
+    /*****************Script for sheet Data***********************/ 
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwcEAkC-IyY_Eosd9FlDiSWDFnmXDnPsixwWTVnZGCq5NmJG524_hJ_Ves4iZ2pMF0hmw/exec'
+    const form = document.forms['contact-us']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+
+        .then(response => {
+          form.reset()
+          console.log('Success!', response)
+          alert('Successful!')
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+
+</body>
+</html>

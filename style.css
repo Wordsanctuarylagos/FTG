@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+:root{
+  --shadow: 0 .5rem 1rem rgb(0,0,0,.05);
+  --blue: #0D99FF;
+  --blue-light: #CFEBFF;
+  --blue-dark: #0A7ACC;
+  --background: rgba(0, 3, 3, 0.82);
+  --contact-color-hover: rgb(255, 130, 0);
+  --contact-color: rgb(255, 156, 0);
+
+  --rounded: .25rem;
+  --rounded-md: .5rem;
+}
+
+body{
+  background-color: rgb(241, 243, 247);
+  line-height: 1.5;
+  color: #000;
+}
+
+fieldset{
+  border-color: var(--blue-light);
+  padding: 1.5em;
+  border-radius: 12px;
+
+}
+
+.container{
+  max-width: 870px;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding: .5em; */
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.container .wrapper{
+  box-shadow: 0 0 20px 0 rgba(255,255,255,1);
+  border-radius: 20px 20px 20px 20px;
+  display: flex;
+  background-color: white;
+}
+
+.wrapper > *{
+  padding: 1.5em;
+}
+
+.contact .head{
+    display: flex;
+    margin-bottom: 20px;
+    padding: 0;
+    justify-content:left;
+    align-items:center ;
+}
+
+.contact h3{
+  color: rgb(0, 0, 0);
+}
+
+img{
+  width: 80px;
+}
+
+/* FORM STYLE */
+.contact form{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.contact form label{
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.contact form .form-group{
+  margin: 0;
+}
+
+.contact form .full{
+  grid-column: 1 / 3;
+}
+
+.contact form button, .contact form input, .contact form textarea{
+  width: 100%;
+  padding: 1em;
+  outline: none;
+}
+
+.contact form input, .contact form textarea, select{
+  
+  border: 1px solid var(--blue);
+  border-radius: var(--rounded);
+/*  background-color: transparent;*/
+  transition: border 0.5s ease-in-out;
+}
+
+.contact form input:focus,
+.contact form textarea:focus,
+select:focus {
+  border-color: var(--blue-dark); 
+}
+
+select{
+  width: 100%;
+  padding: 1em;
+  outline: none;
+}
+
+select option{
+  background-color: var(--blue-light);
+  font-weight: 500;
+}
+
+.contact form textarea{
+  resize: none;
+  overflow-y: auto;
+}
+
+
+.btn-submit{
+  background-color: var(--blue);
+  text-decoration: none;
+  border: none;
+  border-radius: var(--rounded-md);
+  margin-bottom: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+
+.btn-submit:hover {
+  background-color: var(--blue-dark);
+}
+
+
+
+/* **********CONTACT SETTINGS********** */
+
+
+.social-icons a
+{
+	text-decoration: none;
+	font-size: 25px;
+	margin-right: 20px;
+  color: #fff;
+  /* rgb(255, 156, 0); */
+	display: inline-block;
+	transition: transform 0.5s;
+}
+
+.social-icons a:hover
+{
+	transform: translateY(-3px);
+}
+
+
+footer{
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  color: #fff;
+  background-color: var(--blue-dark);
+  justify-content: center;
+  align-items: center;
+}
+
+footer .social-icons a{
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.sign{
+  display: flex;
+  right: 30px;
+  bottom: 0;
+  font-size: 12px;
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Large Screen */
+@media screen and (min-width: 780px){
+
+  .container .wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    box-shadow: 0 0 20px 0 rgba(0,0,0,1);
+    border-radius: 20px 20px 20px 20px;
+  }
+
+
+  .contact{
+    border-radius: 0 20px 20px 0;
+  }
+
+  .contact .head{
+    margin-bottom: 30px;
+}
+
+  .wrapper{
+    box-shadow: none;
+  }
+
+  .contact{
+    padding: 30px;
+  }
+
+  .social-box{
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .social-icons a{
+    font-size: 25px;
+  }
+
+  footer{
+    height: 100px;
+  }
+
+  footer .social-icons a{
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-left: 30px;
+  }
+  
+  footer .sign{
+    right: 30px;
+    padding-bottom: 5px;
+    margin-top: 5px;
+    font-size: 12px;
+    
+  }
+
+}
+
+
+
+
+
