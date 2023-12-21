@@ -21,7 +21,7 @@
 }
 
 body{
-  background-color: rgb(241, 243, 247);
+  background-color: rgb(255, 255, 255);
   line-height: 1.5;
   color: #000;
 }
@@ -37,9 +37,6 @@ fieldset{
   max-width: 870px;
   margin-left: auto;
   margin-right: auto;
-  /* padding: .5em; */
-  margin-top: 50px;
-  margin-bottom: 50px;
 }
 
 .container .wrapper{
@@ -66,7 +63,7 @@ fieldset{
 }
 
 img{
-  width: 80px;
+  width: 90px;
 }
 
 /* FORM STYLE */
@@ -192,32 +189,19 @@ footer .social-icons a{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Large Screen */
 @media screen and (min-width: 780px){
+
+  body{
+    background-color: rgb(241, 243, 247);
+    line-height: 1.5;
+    color: #000;
+  }
+
+  .container{
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 
   .container .wrapper{
     display: grid;
