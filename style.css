@@ -30,7 +30,6 @@ fieldset{
   border-color: var(--blue-light);
   padding: 1.5em;
   border-radius: 12px;
-
 }
 
 .container{
@@ -42,7 +41,6 @@ fieldset{
 .container .wrapper{
   box-shadow: 0 0 20px 0 rgba(255,255,255,1);
   border-radius: 20px 20px 20px 20px;
-  display: flex;
   background-color: white;
 }
 
