@@ -66,7 +66,7 @@
                             <option value="SINGLE">SINGLE</option>
                         </select>
                     </div>
-                    <div class="form-group full"><textarea name="ADDRESS" placeholder="Address"></textarea></div>
+                    <div class="form-group full"><textarea name="ADDRESS" placeholder="House Address"></textarea></div>
                     <div class="form-group full"><textarea name="BLESSED" placeholder="What Blessed You In The Service?"></textarea></div>
                     <div class="form-group full">
                         <button type="submit">Submit</button>
@@ -93,7 +93,7 @@
             </div>
             <div class="form-group full">
               <select name="SERVICE_DAY" id="service_day" required>
-                <option value="">Select Service Day</option>
+                <option value="" disabled selected hidden>Select Service Day</option>
                 <option value="FRIDAY SERVICE">FRIDAY SERVICE</option>
                 <option value="SUNDAY SERVICE">SUNDAY SERVICE</option>
               </select>
@@ -103,14 +103,14 @@
             <div class="form-group full"><input type="text" name="HOD" placeholder="HOD In Charge of The Dept Joined" /></div>
             <div class="form-group full">
               <select name="JOIN/NOT" id="status" required>
-                <option value="">JOINED THE CHURCH/NOT</option>
+                <option value="" disabled selected hidden>Joined The Church / Not</option>
                 <option value="JOINED">JOINED</option>
                 <option value="DID NOT JOIN">DID NOT JOIN</option>
               </select>
             </div>
             <div class="form-group full">
-              <select name="DEPARTMENT">
-                <option value="">Select Department</option>
+              <select name="DEPARTMENT" required>
+                <option value="" disabled selected hidden>Select Department</option>
                 <option value="NO DEPARTMENT JOINED">NO DEPARTMENT JOINED</option>
                 <option value="WORD SANCTUARY CHOIR">WORD SANCTUARY CHOIR</option>
                 <option value="WORD SANCTUARY DRAMATIST">WORD SANCTUARY DRAMATIST</option>
