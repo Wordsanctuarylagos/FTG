@@ -1,86 +1,118 @@
-// === TOGGLE FORM DISPLAY ===
-document.getElementById('ftgBtn').onclick = () => {
-  document.getElementById('ftgForm').style.display = 'block';
-  document.getElementById('officeForm').style.display = 'none';
+const scriptURL = "https://script.google.com/macros/s/AKfycbzhkGb4gwtD8SuQkxXhYnE5SfJN2zR74nfdcMaU2jLPOE_4QEV6uNRKNBMksakBH4wotw/exec";
+
+/* ================= TOGGLE ================= */
+document.getElementById("ftgBtn").onclick = () => {
+  document.getElementById("ftgForm").style.display = "block";
+  document.getElementById("officeForm").style.display = "none";
 };
 
-document.getElementById('officeBtn').onclick = () => {
-  document.getElementById('passwordModal').style.display = 'flex';
+document.getElementById("officeBtn").onclick = () => {
+  document.getElementById("passwordModal").style.display = "flex";
 };
 
-// === PASSWORD PROTECTION FOR OFFICE FORM ===
-function checkPassword() {
-  const password = document.getElementById('officePassword').value;
-  const errorDisplay = document.getElementById('passwordError');
+/* ================= OFFICE LOGIN ================= */
+function loginOffice() {
+  const password = document.getElementById("officePassword").value;
+  const error = document.getElementById("passwordError");
+  const spinner = document.getElementById("loginSpinner");
+  const text = document.getElementById("loginText");
+  const btn = document.getElementById("loginBtn");
 
-  if (password === 'WSLoffice') {
-    document.getElementById('passwordModal').style.display = 'none';
-    document.getElementById('ftgForm').style.display = 'none';
-    document.getElementById('officeForm').style.display = 'block';
-    errorDisplay.textContent = '';
-    document.getElementById('officePassword').value = '';
-    fetchNamesForToday();
-  } else {
-    errorDisplay.textContent = 'Incorrect password. Please try again.';
-  }
+  error.textContent = "";
+  spinner.style.display = "inline-block";
+  text.textContent = "Checking...";
+  btn.disabled = true;
+
+  fetch(scriptURL, {
+    method: "POST",
+    body: new URLSearchParams({
+      action: "loginOffice",
+      password
+    })
+  })
+    .then(res => res.json())
+    .then(data => {
+      spinner.style.display = "none";
+      text.textContent = "Login";
+      btn.disabled = false;
+
+      if (!data.success) {
+        error.textContent = "Incorrect password";
+        return;
+      }
+
+      document.getElementById("passwordModal").style.display = "none";
+      document.getElementById("ftgForm").style.display = "none";
+      document.getElementById("officeForm").style.display = "block";
+      document.getElementById("officePassword").value = "";
+
+      fetchTodayNames();
+    })
+    .catch(() => {
+      spinner.style.display = "none";
+      text.textContent = "Login";
+      btn.disabled = false;
+      error.textContent = "Login failed";
+    });
 }
 
 function closePasswordModal() {
-  document.getElementById('passwordModal').style.display = 'none';
-  document.getElementById('officePassword').value = '';
-  document.getElementById('passwordError').textContent = '';
+  document.getElementById("passwordModal").style.display = "none";
+  document.getElementById("passwordError").textContent = "";
+  document.getElementById("officePassword").value = "";
 }
 
-// === REPLACE THESE LINKS WITH YOUR DEPLOYED SCRIPT URLs ===
-const ftgURL = 'https://script.google.com/macros/s/AKfycbye1QcCsiYMzUKnrqEtuzmea65sT7E4nT67F3lenp27pzO_Bp8lj_AWMpy0k7Qzt57B/exec';
-const officeURL = 'https://script.google.com/macros/s/AKfycbzZVc17kEyytMKv_4Jx_6KUYb4AhR6BdvNJD2pU6WjReS3jr4NUO6cwsohTX3-eyXjEyA/exec';
-const fetchNamesURL = 'https://script.google.com/macros/s/AKfycbxGHlj5XYk7zrNrp5G8cKKExhkEHnwC3f-tKBwMWhBjUgFoHV6IlDg7NYg1Vhh8xckVIQ/exec';
-
-// === FETCH TODAY'S NAMES FOR OFFICE FORM SELECT BOX ===
-function fetchNamesForToday() {
-  fetch(fetchNamesURL)
-    .then(response => response.json())
-    .then(data => {
-      const select = document.getElementById('ftgNameSelect');
+/* ================= FETCH NAMES ================= */
+function fetchTodayNames() {
+  fetch(`${scriptURL}?action=fetchNames`)
+    .then(res => res.json())
+    .then(names => {
+      const select = document.getElementById("ftgNameSelect");
       select.innerHTML = '<option value="">Select FTG Name</option>';
-      data.forEach(name => {
-        const opt = document.createElement('option');
+      names.forEach(name => {
+        const opt = document.createElement("option");
         opt.value = name;
         opt.textContent = name;
         select.appendChild(opt);
       });
-    })
-    .catch(err => {
-      console.error('Failed to fetch names', err);
     });
 }
 
-// === FTG FORM SUBMIT ===
-document.getElementById('formFTG').addEventListener('submit', function(e) {
+/* ================= FTG SUBMIT ================= */
+document.getElementById("formFTG").addEventListener("submit", function (e) {
   e.preventDefault();
-  fetch(ftgURL, {
-    method: 'POST',
-    body: new FormData(this)
-  }).then(res => {
-    alert('FTG Data Submitted');
-    this.reset();
-  }).catch(err => {
-    console.error(err);
-    alert('Error submitting FTG data');
-  });
+  const success = document.getElementById("ftgSuccess");
+  success.style.display = "none";
+
+  const formData = new FormData(this);
+  formData.append("action", "addFTG");
+
+  fetch(scriptURL, { method: "POST", body: formData })
+    .then(res => res.json())
+    .then(() => {
+      this.reset();
+      success.textContent = "FTG data submitted successfully";
+      success.style.display = "block";
+      setTimeout(() => success.style.display = "none", 4000);
+    });
 });
 
-// === OFFICE FORM SUBMIT ===
-document.getElementById('formOffice').addEventListener('submit', function(e) {
+/* ================= OFFICE SUBMIT ================= */
+document.getElementById("formOffice").addEventListener("submit", function (e) {
   e.preventDefault();
-  fetch(officeURL, {
-    method: 'POST',
-    body: new FormData(this)
-  }).then(res => {
-    alert('Office Use Data Submitted');
-    this.reset();
-  }).catch(err => {
-    console.error(err);
-    alert('Error submitting Office Use data');
-  });
+  const success = document.getElementById("officeSuccess");
+  success.style.display = "none";
+
+  const formData = new FormData(this);
+  formData.append("action", "updateOffice");
+
+  fetch(scriptURL, { method: "POST", body: formData })
+    .then(res => res.json())
+    .then(data => {
+      if (!data.success) return;
+      this.reset();
+      success.textContent = "Office data updated successfully";
+      success.style.display = "block";
+      setTimeout(() => success.style.display = "none", 4000);
+    });
 });
