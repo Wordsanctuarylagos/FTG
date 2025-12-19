@@ -341,6 +341,40 @@ footer .sign {
 }
 
 
+/* Success messages */
+.success-message {
+  margin-top: 0.75rem;
+  color: #0a7acc;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: none;
+  text-align: center;       /* ✅ Center the text */
+}
+
+.success-message::before {
+  content: "✔ ";
+  color: green;
+  font-weight: bold;
+}
+
+/* Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #0a7acc;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
 /* Responsive */
 @media screen and (min-width: 780px) {
   body {
