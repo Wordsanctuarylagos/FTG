@@ -27,11 +27,11 @@ function loginOffice() {
     method: "POST",
     body: new URLSearchParams({
       action: "loginOffice",
-      password
-    })
+      password,
+    }),
   })
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       spinner.style.display = "none";
       text.textContent = "Login";
       btn.disabled = false;
@@ -65,11 +65,11 @@ function closePasswordModal() {
 /* ================= FETCH NAMES ================= */
 function fetchTodayNames() {
   fetch(`${scriptURL}?action=fetchNames`)
-    .then(res => res.json())
-    .then(names => {
+    .then((res) => res.json())
+    .then((names) => {
       const select = document.getElementById("ftgNameSelect");
       select.innerHTML = '<option value="">Select FTG Name</option>';
-      names.forEach(name => {
+      names.forEach((name) => {
         const opt = document.createElement("option");
         opt.value = name;
         opt.textContent = name;
@@ -81,38 +81,66 @@ function fetchTodayNames() {
 /* ================= FTG SUBMIT ================= */
 document.getElementById("formFTG").addEventListener("submit", function (e) {
   e.preventDefault();
+
+  const btn = document.getElementById("ftgSubmitBtn");
+  const spinner = btn.querySelector(".btn-spinner");
+  const text = btn.querySelector(".btn-text");
   const success = document.getElementById("ftgSuccess");
+
+  btn.disabled = true;
+  spinner.style.display = "inline-block";
+  text.textContent = "Submitting...";
   success.style.display = "none";
 
   const formData = new FormData(this);
   formData.append("action", "addFTG");
 
   fetch(scriptURL, { method: "POST", body: formData })
-    .then(res => res.json())
+    .then((res) => res.json())
     .then(() => {
       this.reset();
       success.textContent = "FTG data submitted successfully";
       success.style.display = "block";
-      setTimeout(() => success.style.display = "none", 4000);
+    })
+    .finally(() => {
+      spinner.style.display = "none";
+      text.textContent = "Submit";
+      btn.disabled = false;
+      setTimeout(() => (success.style.display = "none"), 4000);
     });
 });
 
 /* ================= OFFICE SUBMIT ================= */
-document.getElementById("formOffice").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const success = document.getElementById("officeSuccess");
-  success.style.display = "none";
+document
+  .getElementById("formOffice")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  const formData = new FormData(this);
-  formData.append("action", "updateOffice");
+    const btn = document.getElementById("officeSubmitBtn");
+    const spinner = btn.querySelector(".btn-spinner");
+    const text = btn.querySelector(".btn-text");
+    const success = document.getElementById("officeSuccess");
 
-  fetch(scriptURL, { method: "POST", body: formData })
-    .then(res => res.json())
-    .then(data => {
-      if (!data.success) return;
-      this.reset();
-      success.textContent = "Office data updated successfully";
-      success.style.display = "block";
-      setTimeout(() => success.style.display = "none", 4000);
-    });
-});
+    btn.disabled = true;
+    spinner.style.display = "inline-block";
+    text.textContent = "Submitting...";
+    success.style.display = "none";
+
+    const formData = new FormData(this);
+    formData.append("action", "updateOffice");
+
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.success) return;
+        this.reset();
+        success.textContent = "Office data updated successfully";
+        success.style.display = "block";
+      })
+      .finally(() => {
+        spinner.style.display = "none";
+        text.textContent = "Submit Office Data";
+        btn.disabled = false;
+        setTimeout(() => (success.style.display = "none"), 4000);
+      });
+  });
