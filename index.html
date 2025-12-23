@@ -48,7 +48,7 @@
             <div class="form-group full"><input type="tel" name="PHONE" placeholder="Phone Number" /></div>
             <div class="form-group full"><input type="tel" name="WHATSAPP" placeholder="WhatsApp Number" /></div>
             <div class="form-group full"><input type="text" name="PROFESSION" placeholder="Profession" required /></div>
-            <div class="form-group full"><input type="text" name="DOB" placeholder="Birthday" /></div>
+            <div class="form-group full"><input type="text" name="DOB" placeholder="Birthday i.e 12th May" /></div>
             <div class="form-group full"><input type="text" name="INVITED" placeholder="Invited By" /></div>
             <div class="form-group full">
               <select name="GENDER" required>
@@ -68,23 +68,31 @@
               <select name="DEPARTMENT" required>
                 <option value="" disabled selected hidden>Select Department</option>
                 <option value="NO DEPARTMENT JOINED">NO DEPARTMENT JOINED</option>
-                <option value="WORD SANCTUARY CHOIR">WORD SANCTUARY CHOIR</option>
-                <option value="WORD SANCTUARY DRAMATIST">WORD SANCTUARY DRAMATIST</option>
-                <option value="LOVE & CARE">LOVE & CARE</option>
-                <option value="POWER & SOUND">POWER & SOUND</option>
                 <option value="MEDIA">MEDIA</option>
-                <option value="USHERING">USHERING</option>
+                <option value="POWER & SOUND">POWER & SOUND</option>
+                <option value="WORD SANCTUARY CHOIR">WORD SANCTUARY CHOIR</option>
                 <option value="DECORATION">DECORATION</option>
                 <option value="ZOE">ZOE</option>
+                <option value="USHERING">USHERING</option>
+                <option value="WORD SANCTUARY DRAMATIST">WORD SANCTUARY DRAMATIST</option>
+                <option value="ORISON">ORISON</option>
                 <option value="EVANGELISM">EVANGELISM</option>
+                <option value="CHILDREN">CHILDREN</option>
+                <option value="FINANCE">FINANCE</option>
               </select>
             </div>
             <div class="form-group full"><textarea name="ADDRESS" placeholder="House Address"></textarea></div>
             <div class="form-group full"><textarea name="BLESSED" placeholder="What Blessed You In The Service?"></textarea></div>
+            
             <div class="form-group full">
-              <button type="submit">Submit</button>
+              <button type="submit" id="ftgSubmitBtn">
+                <span class="btn-text">Submit</span>
+                <span class="spinner btn-spinner"></span>
+              </button>
               <p id="ftgSuccess" class="success-message"></p>
             </div>
+
+
           </fieldset>
         </form>
       </div>
@@ -123,10 +131,16 @@
               </select>
             </div>
             <div class="form-group full"><textarea name="COMMENT" placeholder="Comment From The Minister"></textarea></div>
+            
             <div class="form-group full">
-              <button type="submit">Submit Office Data</button>
+              <button type="submit" id="officeSubmitBtn">
+                <span class="btn-text">Submit Office Data</span>
+                <span class="spinner btn-spinner"></span>
+              </button>
               <p id="officeSuccess" class="success-message"></p>
             </div>
+
+
           </fieldset>
         </form>
       </div>
