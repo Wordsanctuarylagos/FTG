@@ -3,8 +3,8 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
 :root {
@@ -12,54 +12,68 @@
   --blue: #0D99FF;
   --blue-light: #CFEBFF;
   --blue-dark: #0A7ACC;
-  --background: rgba(0, 3, 3, 0.82);
-  --contact-color-hover: rgb(255, 130, 0);
-  --contact-color: rgb(255, 156, 0);
   --rounded: .25rem;
   --rounded-md: .5rem;
 }
 
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   line-height: 1.5;
   color: #000;
 }
 
-
-
+/* ===============================
+   CONTAINER
+================================ */
 .container {
   max-width: 870px;
-  margin-left: auto;
-  margin-right: auto;
-  /* margin-top: 1rem; */
+  margin: 50px auto;
 }
 
 .container .wrapper {
-  box-shadow: 0 0 20px 0 rgba(255,255,255,1);
-  border-radius: 20px;
   background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
 }
 
 .wrapper > * {
-  padding: 1.5em;
+  padding: 1.5rem;
 }
 
-/* Toggle buttons */
+/* ===============================
+   FORM TOGGLE (FIXED)
+================================ */
 .form-toggle {
-  text-align: center;
-  margin: 2rem 0 1.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1.25rem 1rem;
+  margin: 0;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-bottom: 1px solid var(--blue-light);
 }
 
 .form-toggle button {
   background-color: var(--blue);
   border: none;
   color: white;
-  padding: 0.75rem 1.5rem;
-  margin: 0 1rem;
+
+  padding: 0.75rem 1.75rem;
   font-size: 1rem;
   font-weight: 600;
+
   border-radius: var(--rounded-md);
   cursor: pointer;
+  white-space: nowrap;
+
   transition: background-color 0.3s ease;
 }
 
@@ -72,41 +86,24 @@ body {
   outline-offset: 2px;
 }
 
-/* Submit buttons */
-button[type="submit"] {
-  display: block;
-  margin: 2rem auto 1rem;
-  background-color: var(--blue);
-  border: none;
-  padding: 0.75rem 2rem;
-  color: white;
-  font-weight: bold;
-  border-radius: var(--rounded-md);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: var(--blue-dark);
-}
-
-/* Contact header */
+/* ===============================
+   CONTACT / FORMS
+================================ */
 .contact .head {
   display: flex;
-  margin-bottom: 20px;
-  justify-content: left;
   align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .contact h3 {
-  color: rgb(0, 0, 0);
+  color: #000;
 }
 
 img {
   width: 90px;
 }
 
-/* Form layout */
 .contact form {
   display: flex;
   flex-direction: column;
@@ -126,229 +123,83 @@ img {
   font-size: 1rem;
   border: 1px solid var(--blue);
   border-radius: var(--rounded);
-  transition: border 0.5s ease-in-out;
+  transition: border 0.5s ease-in-out; 
   margin-bottom: 0.5rem;
-}
-
-.contact form input,
-.contact form textarea,
-.contact form select {
-  border: 1px solid var(--blue);
-  border-radius: var(--rounded);
   background-color: white;
   color: black;
 }
 
-/* Fix for border turning black on focus */
 .contact form input:focus,
 .contact form textarea:focus,
 .contact form select:focus {
   border: 2px solid var(--blue-dark);
   outline: none;
-  background-color: white;
-  color: black;
 }
-
 
 .contact form textarea {
   resize: none;
-  overflow-y: auto;
 }
 
-/* Legend and fieldset */
-form fieldset {
-  border: 2px solid var(--blue);
-  border-radius: 12px;
-  padding: 2rem 1.5rem 1.5rem;
-  position: relative;
-  margin-bottom: 2rem;
-}
+/* ===============================
+   FIELDSET & LEGEND
+================================ */
+form fieldset { 
+  border: 2px solid var(--blue); 
+  border-radius: 12px; 
+  padding: 2rem 1.5rem 1.5rem; 
+  position: relative; margin-bottom: 2rem; 
+} 
 
-form legend {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--blue-dark);
-  background-color: white;
-  padding: 0 1rem;
-  position: absolute;
-  top: -0.9rem;
-  left: 1.2rem;
-  z-index: 1;
-}
-
-form legend i {
-  margin-right: 0.5rem;
-  color: var(--blue-dark);
-}
-
-/* Password modal */
-.password-modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-}
-
-.password-modal-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-  position: relative;
-  animation: fadeScaleIn 0.4s ease-out;
-}
-
-.password-modal input {
-  background-color: white;
-  color: black;
-  border: 1px solid var(--blue);
-  border-radius: var(--rounded);
-  font-size: 1rem;
-  padding: 0.75rem;
-  width: 100%;
-  margin-bottom: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.password-modal input:focus {
-  border: 2px solid var(--blue-dark);
-  outline: none;
-  background-color: white;
-  color: black;
-}
-
-
-.password-modal button:not(.close-modal) {
-  background-color: var(--blue);
-  color: white;
-  padding: 0.6rem 1.5rem;
-  border: none;
-  font-weight: bold;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.password-modal button:not(.close-modal):hover {
-  background-color: var(--blue-dark);
-}
-
-.password-modal .close-modal {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  background: transparent;
-  border: none;
-  color: #555;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.password-modal .close-modal:hover {
-  color: red;
-}
-
-.error-message {
-  color: red;
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
-}
-
-/* Animation */
-@keyframes fadeScaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Footer */
-footer {
-  display: flex;
-  flex-direction: column;
-  height: 70px;
-  color: #fff;
-  background-color: var(--blue-dark);
-  justify-content: center;
-  align-items: center;
-}
-
-footer .social-icons a {
-  text-decoration: none;
-  font-size: 20px;
-  margin-right: 20px;
-  color: #fff;
-  display: inline-block;
-  transition: transform 0.5s;
-}
-
-footer .social-icons a:hover {
-  transform: translateY(-3px);
-}
-
-footer .sign {
-  font-size: 12px;
-}
-
-.form-toggle {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background-color: white;
-  padding: 1.5rem 1rem 1.5rem 1rem;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid var(--blue-light);
-  margin: 0;
+form legend { 
+  font-size: 1.25rem; 
+  font-weight: 700; 
+  color: var(--blue-dark); 
+  background-color: white; padding: 0 1rem; 
+  position: absolute; 
+  top: -0.9rem; left: 1.2rem; z-index: 1; 
+} 
   
+form legend i { 
+  margin-right: 0.5rem; 
+  color: var(--blue-dark); 
 }
 
-.form-toggle button {
+/* ===============================
+   BUTTONS
+================================ */
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button[type="submit"] {
+  margin: 2rem auto 0.5rem;
   background-color: var(--blue);
   border: none;
+  padding: 0.75rem 2rem;
   color: white;
-  padding: 0.75rem 1.5rem;
-  margin: 0 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+  font-weight: bold;
   border-radius: var(--rounded-md);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.form-toggle button:hover {
+button[type="submit"]:hover {
   background-color: var(--blue-dark);
 }
 
-.form-toggle button:focus {
-  outline: 2px solid var(--blue-light);
-  outline-offset: 2px;
-}
-
-
-/* Success messages */
+/* ===============================
+   SUCCESS MESSAGE
+================================ */
 .success-message {
   margin-top: 0.75rem;
   color: #0a7acc;
   font-weight: 600;
   font-size: 0.95rem;
   display: none;
-  text-align: center;       /* ✅ Center the text */
+  text-align: center;
 }
 
 .success-message::before {
@@ -357,22 +208,112 @@ footer .sign {
   font-weight: bold;
 }
 
-/* Spinner */
+/* ===============================
+   SPINNER (UNIFIED)
+================================ */
 .spinner {
   width: 18px;
   height: 18px;
   border: 3px solid #ccc;
   border-top: 3px solid #0a7acc;
   border-radius: 50%;
-  display: inline-block;
   animation: spin 0.8s linear infinite;
-  vertical-align: middle;
-  margin-left: 6px;
+  display: none;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* ===============================
+   PASSWORD MODAL
+================================ */
+.password-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.password-modal input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--blue);
+  border-radius: var(--rounded);
+  margin-bottom: 1rem;
+}
+
+.password-modal input:focus {
+  border: 2px solid var(--blue-dark);
+  outline: none;
+}
+
+.password-modal button:not(.close-modal) {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.password-modal .close-modal {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Center Office Login button */
+.password-modal-content button:not(.close-modal) {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* ===============================
+   FOOTER
+================================ */
+footer {
+  background-color: var(--blue-dark);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+footer .social-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+footer .sign {
+  font-size: 12px;
+}
+
 
 
 /* Responsive */
